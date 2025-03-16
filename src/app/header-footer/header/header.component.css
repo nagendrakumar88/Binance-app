@@ -1,0 +1,6 @@
+.nav-link i {
+    font-size: 1.3rem;  /* Increase icon size */
+    margin-right: 5px;  /* Space between icon and text */
+    vertical-align: middle;
+  }
+  
