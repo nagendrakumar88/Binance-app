@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="hight-width">
+
+    <div class="marquee-container">
+      <div class="marquee-content">
+       
+        <span>Your scrolling text or content goes here...</span>
+
+        
+
+      </div>
+    </div>
+
+    <div class="market-container">
+      <h1 class="title">Binance Market Data</h1>
+    
+      <!-- Search Bar -->
+      <div class="search-container">
+        <input 
+          type="text" 
+          placeholder="Search for a coin..." 
+          [(ngModel)]="searchQuery"
+          (input)="onSearch()"
+        />
+        <button (click)="onSearch()">
+          🔍
+        </button>
+      </div>
+    
+      <!-- Loading Spinner -->
+      <div *ngIf="loading" class="loading">
+        Loading...
+      </div>
+    
+      <!-- Error Message -->
+      <div *ngIf="errorMessage" class="error">
+        {{ errorMessage }}
+      </div>
+    
+      <!-- Coin List -->
+      <!-- Coin List -->
+      <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th>Coin Name / Volume</th>
+            <th>Last Price</th>
+            <th>
+              Change (%) 
+              <button class="btn btn-sm btn-light" (click)="sortByChange('asc')">⬆️</button>
+              <button class="btn btn-sm btn-light" (click)="sortByChange('desc')">⬇️</button>
+            </th>
+          </tr>
+        </thead>
+        </table>
+<div *ngIf="!loading && !errorMessage" class="coin-list">
+
+  <div *ngFor="let coin of filteredCoins" class="coin-item">
+    <div class="coin-info">
+      <span class="coin-symbol">{{ coin.symbol }}</span>
+      <span class="coin-volume">{{ coin.volume }}</span>
+    </div>
+    <div class="coin-price">
+      {{ coin.lastPrice }}
+    </div>
+    <span [ngClass]="{'positive': +coin.priceChangePercent > 0, 'negative': +coin.priceChangePercent < 0}">
+      {{ coin.priceChangePercent }}%
+    </span>
+  </div>
+</div>
+</div>  
+</div>
